@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dispensa CSS - Selettori avanzati</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="nav-fissa">
+    <span class="logo">Dispensa CSS - Selettori avanzati</span>
+    <a href="#selettori">Selettori</a>
+    <a href="#pseudo">Pseudo-elem.</a>
+  </nav>
+
+  <div class="container">
+    <header class="main-header">
+      <h1>Guida Completa CSS</h1>
+      <p>Dispensa didattica con esempi pratici e mini esercizi per ogni argomento</p>
+    </header>
+
+    <!-- ==========================================
+         2. SELETTORI AVANZATI
+         ========================================== -->
+    <section id="selettori">
+      <h2><span class="num">1</span> Selettori Avanzati</h2>
+
+      <h3>Combinatori</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Simbolo</th>
+            <th>Nome</th>
+            <th>Descrizione</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>A B</code></td>
+            <td>Discendente</td>
+            <td>Seleziona B dentro A (a qualsiasi livello)</td>
+          </tr>
+          <tr>
+            <td><code>A &gt; B</code></td>
+            <td>Figlio diretto</td>
+            <td>Seleziona B solo se figlio diretto di A</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="demo-box sel-demo">
+        <p>Figlio diretto → <code>.sel-demo &gt; p</code> (grassetto, scuro)</p>
+        <div>
+          <p>Dentro un div → <code>.sel-demo p</code> lo cattura (grigio)</p>
+        </div>
+        <p>Ultimo paragrafo → <code>:last-child</code> (corsivo, viola)</p>
+      </div>
+
+      <h3>Pseudo-classi: :first-child, :last-child, :nth-child(indice)</h3>
+
+      <div class="spiegazione">
+        <code>:nth-child(n)</code> seleziona l'elemento che occupa la <strong>posizione n</strong> tra i fratelli.
+        L'indice parte da <strong>1</strong>, non da 0.
+      </div>
+
+      <div class="demo-box sel-demo">
+        <ul class="indici">
+          <li>🥇 :first-child / :nth-child(1) — primo</li>
+          <li>🥈 :nth-child(2) — secondo</li>
+          <li>🥉 :nth-child(3) — terzo</li>
+          <li>4️⃣ :nth-child(4) — quarto</li>
+          <li>🏁 :last-child / :nth-child(5) — ultimo</li>
+        </ul>
+      </div>
+
+      <h3>Formule con :nth-child()</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Formula</th>
+            <th>Seleziona</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>:nth-child(1)</code></td>
+            <td>Solo il primo</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(3)</code></td>
+            <td>Solo il terzo</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(2n)</code></td>
+            <td>Pari: 2, 4, 6, 8…</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(2n+1)</code></td>
+            <td>Dispari: 1, 3, 5, 7…</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(3n)</code></td>
+            <td>Ogni 3: 3, 6, 9, 12…</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(3n+1)</code></td>
+            <td>1°, 4°, 7°, 10°…</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(n+3)</code></td>
+            <td>Dal terzo in poi: 3, 4, 5, 6…</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Pseudo-classe :not()</h3>
+      <div class="demo-box sel-demo">
+        <ul class="non-last">
+          <li>Elemento A — ha il bordo sotto</li>
+          <li>Elemento B — ha il bordo sotto</li>
+          <li>Elemento C — <code>:not(:last-child)</code> NON lo seleziona → nessun bordo</li>
+        </ul>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Pseudo-classe</th>
+            <th>Seleziona</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>:first-child</code></td>
+            <td>Il primo figlio (= :nth-child(1))</td>
+          </tr>
+          <tr>
+            <td><code>:last-child</code></td>
+            <td>L'ultimo figlio</td>
+          </tr>
+          <tr>
+            <td><code>:nth-child(n)</code></td>
+            <td>L'n-esimo figlio (1, 2, 2n, 2n+1, 3n…)</td>
+          </tr>
+          <tr>
+            <td><code>:not(selettore)</code></td>
+            <td>Tutti ESCLUSO quelli che corrispondono</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="esercizio">
+        <h4>✏️ Mini Esercizio</h4>
+        <p>Scrivi i selettori CSS per:</p>
+        <ol style="margin-left: 18px; font-size: 0.92rem">
+          <li>Primo e ultimo <code>&lt;li&gt;</code> di <code>.menu</code></li>
+          <li>Il <strong>terzo</strong> elemento di <code>.lista</code></li>
+          <li>Tutti i <code>&lt;p&gt;</code> <strong>tranne l'ultimo</strong> dentro <code>.articolo</code></li>
+          <li>Ogni <strong>quarto</strong> figlio di <code>.griglia</code></li>
+        </ol>
+        <button class="btn-soluzione" onclick="toggleSol(this)">Mostra soluzione</button>
+        <div class="soluzione">
+          <p>1) <code>.menu li:first-child</code> e <code>.menu li:last-child</code></p>
+          <p>2) <code>.lista li:nth-child(3)</code></p>
+          <p>3) <code>.articolo p:not(:last-child)</code></p>
+          <p>4) <code>.griglia > :nth-child(4n)</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         7. PSEUDO-ELEMENTI
+         ========================================== -->
+    <section id="pseudo">
+      <h2><span class="num">2</span> Pseudo-elementi ::before e ::after</h2>
+
+      <div class="spiegazione">
+        <code>::before</code> e <code>::after</code> inseriscono contenuto <strong>prima</strong> o
+        <strong>dopo</strong> il contenuto di un elemento, usando <code>content</code>. Non modificano l'HTML.
+      </div>
+
+      <h3>Contenuto decorativo</h3>
+      <div class="demo-box">
+        <p class="decorato">Frecce verdi con <code>::before</code> e <code>::after</code></p>
+      </div>
+
+      <h3>Virgolette stilizzate</h3>
+      <div class="demo-box">
+        <p class="citazione-box">
+          Questa citazione usa ::before per la virgoletta aperta grande e ::after per quella di chiusura. Tutto senza
+          toccare l'HTML.
+        </p>
+      </div>
+
+      <h3>Tooltip con ::after</h3>
+      <div class="demo-box">
+        <span class="tooltip-demo">Passa il mouse!</span>
+        <br /><small style="color: #888">Tooltip creato con <code>::after</code> + <code>content</code> +
+          <code>:hover</code></small>
+      </div>
+
+      <h3>Lista numerata con counter</h3>
+      <div class="demo-box">
+        <ol class="step-list">
+          <li>Importa i Google Font</li>
+          <li>Definisci le variabili CSS</li>
+          <li>Applica i selettori</li>
+          <li>Verifica la specificità</li>
+        </ol>
+      </div>
+
+      <h3>Capolettera con ::first-letter</h3>
+      <div class="demo-box">
+        <p class="capolettera">
+          Questo paragrafo ha la prima lettera ingrandita e colorata usando <code>::first-letter</code>.
+        </p>
+      </div>
+
+      <div class="esercizio">
+        <h4>✏️ Mini Esercizio</h4>
+        <p>
+          Usa <code>::before</code> per aggiungere ✅ (unicode <code>\2705</code>) prima di ogni
+          <code>&lt;li&gt;</code> dentro <code>.checklist</code>, rimuovendo il marker di default.
+        </p>
+        <button class="btn-soluzione" onclick="toggleSol(this)">Mostra soluzione</button>
+        <div class="soluzione">
+          <p><code>.checklist { list-style: none; padding-left: 0; }</code></p>
+          <p><code>.checklist li::before { content: "\2705 "; margin-right: 6px; }</code></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function toggleSol(btn) {
+      const sol = btn.nextElementSibling;
+      sol.classList.toggle('open');
+      btn.textContent = sol.classList.contains('open') ? 'Nascondi soluzione' : 'Mostra soluzione';
+    }
+  </script>
+</body>
+
+</html>
